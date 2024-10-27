@@ -90,18 +90,19 @@
         }
 
         table {
-            width: 70%;
+            width: 100%; /* Usar el 100% para aprovechar el ancho completo */
             border-collapse: collapse;
             margin-top: 20px;
-            table-layout: fixed; /* Fuerza a que todas las columnas tengan el mismo ancho */
         }
         
+        /* Hacer que las celdas se centren */
         th, td {
             padding: 15px;
             border: 1px solid #ddd;
             text-align: center;
         }
         
+        /* Fijo para los encabezados */
         th {
             background-color: #f2f2f2;
         }
@@ -116,36 +117,45 @@
             height: auto; /* Mantiene la proporción de la imagen */
         }
 
-        /* Media Queries para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%; /* Ancho del formulario ajustado para móviles */
-                margin: 10px 0; /* Espacio arriba y abajo */
-            }
-
-            table {
-                font-size: 14px; /* Tamaño de fuente ajustado para móviles */
-            }
-
-            th, td {
-                padding: 10px; /* Espacio interno ajustado para móviles */
-            }
+        /* Responsividad para móviles */
+        @media (max-width: 600px) {
+        table, thead, tbody, th, td, tr {
+            display: block; /* Hacer que todos los elementos sean bloques */
         }
 
-        @media (max-width: 480px) {
-            .container {
-                width: 100%; /* Ancho del formulario ajustado para móviles */
-                margin: 5px 0; /* Espacio arriba y abajo */
-            }
-
-            table {
-                font-size: 12px; /* Tamaño de fuente ajustado para móviles */
-            }
-
-            th, td {
-                padding: 5px; /* Espacio interno ajustado para móviles */
-            }
+        th {
+            display: none; /* Oculta los encabezados en móviles */
         }
+
+        tr {
+            margin-bottom: 15px; /* Margen entre filas */
+            border: 1px solid #ddd; /* Borde para cada fila */
+        }
+
+        td {
+            text-align: right; /* Alinea el texto a la derecha */
+            position: relative; /* Posición relativa para pseudo-elementos */
+            padding-left: 50%; /* Espaciado a la izquierda para el contenido */
+        }
+
+        td::before {
+            content: attr(data-label); /* Usa el atributo data-label como contenido */
+            position: absolute; /* Posiciona el pseudo-elemento de manera absoluta */
+            left: 10px; /* Espacio desde la izquierda */
+            text-align: left; /* Alineación a la izquierda */
+            font-weight: bold; /* Negrita para el encabezado de la celda */
+        }
+        td.image {
+            width: 100%; /* Usa todo el ancho en pantallas pequeñas */
+            text-align: center; /* Centra el contenido de la celda */
+        }
+    
+        td.image img {
+            max-width: 50%; /* Limita el ancho máximo de la imagen a un 80% */
+            max-height: 50px; /* Limitar la altura para mantener el diseño de la tabla */
+            object-fit: contain; /* Asegura que la imagen no se recorte y mantenga su proporción */
+        }
+    }        
     </style>
     <title>Postify</title>
 </head>
@@ -165,37 +175,38 @@
     </div>
     <h2>Posts
     </h2>
-<table>
-    <thead>
-        <tr><th>Username</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Fecha de Creación</th>
-            <th>Imagen</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for post in posts %}
+    <table>
+        <thead>
             <tr>
-                <td><strong>{{ post.username }}</strong></td>
-                <td>{{ post.title }}</td>
-                <td>{{ post.description }}</td>
-                <td><em>{{ post.created_at }}</em></td>
-                <td class="image">
+                <th>Usuario</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Fecha</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td data-label="Usuario">{{ post.username }}</td>
+                <td data-label="Título">{{ post.title }}</td>
+                <td data-label="Descripción">{{ post.description }}</td>
+                <td data-label="Fecha">{{ post.created_at }}</td>
+                <td class="image" data-label="Imagen">
                     {% if post.image %}
                         <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}" />
                     {% else %}
-                        <p>No image uploaded.</p>
+                        No image uploaded.
                     {% endif %}
                 </td>
             </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4" style="text-align: center;">There are no posts yet.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            {% empty %}
+            <tr>
+                <td colspan="6">No hay posts aún.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>
