@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        button {
+            background-color: #007bff; /* Color azul */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 10px; /* Espaciado interno */
+            cursor: pointer; /* Cambiar cursor al pasar por encima */
+            font-size: 16px; /* Tamaño de fuente */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+        }
+    </style>
+    <title>Postify</title>
+</head>
+<body>
+    {% block content %}
+    <h1>Welcome to Postify</h1>
+    <p>Explora, comparte y conecta con otros usuarios en nuestra plataforma. Aquí encontrarás una colección de posts creados por nuestra comunidad: experiencias, ideas, proyectos y pensamientos que inspiran y enriquecen.</p>
+    <p>¿Tienes algo que compartir? Sube tus propios posts con imágenes y descripciones, y únete a la conversación. Desde momentos cotidianos hasta descubrimientos emocionantes, ¡cada post es una oportunidad para conectar!</p>
+    <p>Echa un vistazo a las publicaciones recientes, descubre temas interesantes y encuentra personas con intereses similares. ¡Esperamos que disfrutes compartiendo y descubriendo junto a nosotros!</p>
+    <div class="container">
+        <!-- Enlace al libro de visitas -->
+        <button type="button" onclick="window.location.href='{% url 'posts' %}'">Ver posts</button>
+    </div>
+</body>
+</html>
+{% endblock %}
