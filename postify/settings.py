@@ -28,7 +28,7 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'cloudinary_storage',
+    'accounts',
     'home',
     'posts',
 ]
@@ -112,6 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = 'login'  # Ruta para redirigir al login si no está autenticado
+LOGIN_REDIRECT_URL = 'home'  # Redirección tras el login
+LOGOUT_REDIRECT_URL = 'login'  # Redirección tras el logout
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

@@ -1,0 +1,197 @@
+/* General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa toda la altura de la ventana */
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Asegura que no sea demasiado ancho */
+    padding: 20px;
+    text-align: center; /* Centra el contenido dentro del contenedor */
+}
+
+/* Títulos */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los inputs y botones dentro del formulario */
+}
+
+/* Estilo uniforme para todos los inputs */
+input[type="text"], 
+input[type="password"], 
+input[type="email"], 
+input[type="number"], 
+input[type="tel"] {
+    width: 100%; /* Ocupa todo el espacio del contenedor */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+    transition: border-color 0.3s; /* Transición suave al enfocar */
+}
+
+input[type="text"]:focus, 
+input[type="password"]:focus, 
+input[type="email"]:focus, 
+input[type="number"]:focus, 
+input[type="tel"]:focus {
+    outline: none;
+    border-color: #1877f2; /* Color al enfocarse */
+}
+
+/* Botón */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #145dbf;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: #1877f2;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px; /* Espaciado respecto al formulario */
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+footer a {
+    color: #1877f2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Errores */
+.error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%; /* Alinea el texto con los inputs */
+}
+
+/* Asegúrate de que no haya estilos adicionales que afecten el tamaño de los inputs */
+.form-group {
+    width: 100%; /* Asegura que el grupo de formulario ocupe el 100% */
+}
+
+
+/* SPINNER LOADING*/
+#loader {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 12px solid #f3f3f3;
+    border-top: 12px solid #3498db;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px; /* Reduce el padding en pantallas pequeñas */
+    }
+
+    h2 {
+        font-size: 20px; /* Ajusta el tamaño de la fuente del título */
+    }
+
+    input[type="text"], 
+    input[type="password"], 
+    input[type="email"], 
+    input[type="number"], 
+    input[type="tel"] {
+        font-size: 16px; /* Aumenta el tamaño de la fuente de los inputs */
+    }
+
+    button {
+        font-size: 18px; /* Aumenta el tamaño de la fuente del botón */
+    }
+
+    a {
+        font-size: 16px; /* Aumenta el tamaño de la fuente de los enlaces */
+    }
+
+    footer {
+        font-size: 14px; /* Aumenta el tamaño de la fuente del footer */
+    }
+}

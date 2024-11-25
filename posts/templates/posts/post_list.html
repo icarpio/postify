@@ -172,41 +172,50 @@
             <br>
             <button type="button" onclick="window.location.href='{% url 'index' %}'">Volver</button>
         </form>
+        <br>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Cerrar Sesión</button>
+        </form>
     </div>
     <h2>Posts
     </h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Usuario</th>
-                <th>Título</th>
-                <th>Descripción</th>
-                <th>Fecha</th>
-                <th>Imagen</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for post in posts %}
-            <tr>
-                <td data-label="Usuario">{{ post.username }}</td>
-                <td data-label="Título">{{ post.title }}</td>
-                <td data-label="Descripción">{{ post.description }}</td>
-                <td data-label="Fecha">{{ post.created_at }}</td>
-                <td class="image" data-label="Imagen">
-                    {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}" />
-                    {% else %}
-                        No image uploaded.
-                    {% endif %}
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6">No hay posts aún.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td data-label="Usuario">{{ post.user }}</td>
+                    <td data-label="Título">{{ post.title }}</td>
+                    <td data-label="Descripción">{{ post.description }}</td>
+                    <td data-label="Fecha">{{ post.created_at }}</td>
+                    <td class="image" data-label="Imagen">
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}" />
+                        {% else %}
+                            No image uploaded.
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-info">Ver Detalles</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No hay posts aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
 </body>
 </html>

@@ -1,36 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        button {
-            background-color: #007bff; /* Color azul */
-            color: white; /* Color del texto */
-            border: none; /* Sin borde */
-            border-radius: 5px; /* Bordes redondeados */
-            padding: 10px; /* Espaciado interno */
-            cursor: pointer; /* Cambiar cursor al pasar por encima */
-            font-size: 16px; /* Tamaño de fuente */
-            transition: background-color 0.3s; /* Transición suave */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-
+        
+        header {
+            background-color: #1877f2;
+            color: white;
+            padding: 10px 20px; /* Reduce el padding vertical (top y bottom) para disminuir la altura */
+            text-align: center;
+            max-width: 800px; /* Mantiene el ancho deseado */
+            margin: 0 auto; /* Centra el header */
+        }
+        
+        header h1 {
+            font-size: 24px; /* Ajusta el tamaño de la fuente según sea necesario */
+            margin: 0; /* Elimina el margen del h1 para reducir la altura adicional */
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .intro {
+            margin-bottom: 20px;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
         button:hover {
-            background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+            background-color: #145dbf;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f2f5;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        /* Media Queries para dispositivos móviles */
+        @media (max-width: 600px) {
+            header {
+                padding: 15px; /* Reduce el padding en móviles */
+            }
+        
+            main {
+                margin: 10px; /* Reduce el margen en móviles */
+                padding: 15px; /* Reduce el padding en móviles */
+            }
+        
+            button {
+                padding: 10px; /* Ajusta el padding del botón */
+                font-size: 14px; /* Reduce el tamaño de fuente del botón */
+            }
+        
+            footer {
+                padding: 15px; /* Reduce el padding en el footer */
+            }
         }
     </style>
     <title>Postify</title>
 </head>
 <body>
     {% block content %}
-    <h1>Welcome to Postify</h1>
-    <p>Explora, comparte y conecta con otros usuarios en nuestra plataforma. Aquí encontrarás una colección de posts creados por nuestra comunidad: experiencias, ideas, proyectos y pensamientos que inspiran y enriquecen.</p>
-    <p>¿Tienes algo que compartir? Sube tus propios posts con imágenes y descripciones, y únete a la conversación. Desde momentos cotidianos hasta descubrimientos emocionantes, ¡cada post es una oportunidad para conectar!</p>
-    <p>Echa un vistazo a las publicaciones recientes, descubre temas interesantes y encuentra personas con intereses similares. ¡Esperamos que disfrutes compartiendo y descubriendo junto a nosotros!</p>
-    <div class="container">
-        <!-- Enlace al libro de visitas -->
-        <button type="button" onclick="window.location.href='{% url 'posts' %}'">Ver posts</button>
-    </div>
+    <header>
+        <h1>Welcome to Postify</h1>
+    </header>
+
+    <main>
+        <section class="intro">
+            <p>Explora, comparte y conecta con otros usuarios en nuestra plataforma. Aquí encontrarás una colección de posts creados por nuestra comunidad: experiencias, ideas, proyectos y pensamientos que inspiran y enriquecen.</p>
+            <p>¿Tienes algo que compartir? Sube tus propios posts con imágenes y descripciones, y únete a la conversación. Desde momentos cotidianos hasta descubrimientos emocionantes, ¡cada post es una oportunidad para conectar!</p>
+            <p>Echa un vistazo a las publicaciones recientes, descubre temas interesantes y encuentra personas con intereses similares. ¡Esperamos que disfrutes compartiendo y descubriendo junto a nosotros!</p>
+        </section>
+
+        <div class="container">
+            <button type="button" onclick="window.location.href='{% url 'posts' %}'">Ver posts</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Postify. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
 {% endblock %}

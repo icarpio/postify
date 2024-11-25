@@ -7,4 +7,4 @@ class PostForm(forms.ModelForm):
     image = CloudinaryFileField()
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ['title', 'description', 'image']
