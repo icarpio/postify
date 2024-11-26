@@ -28,7 +28,7 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -113,9 +113,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.PostifyUser' 
+
 LOGIN_URL = 'login'  # Ruta para redirigir al login si no está autenticado
 LOGIN_REDIRECT_URL = 'home'  # Redirección tras el login
 LOGOUT_REDIRECT_URL = 'login'  # Redirección tras el logout
+
+SESSION_COOKIE_NAME = 'postify_sessionid'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

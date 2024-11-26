@@ -1,3 +1,6 @@
-from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+class PostifyUser(AbstractUser):
+    # Campos adicionales específicos del Proyecto
+    class Meta:
+        db_table = 'postify_user'  # Prefijo para diferenciar
