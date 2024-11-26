@@ -10,7 +10,7 @@ def register(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()  # Guarda el usuario con la contraseña hasheada
-            messages.success(request, "¡Te has registrado correctamente!")
+            messages.success(request, "Sing Up Success!")
             return redirect('login')
     else:
         form = CustomUserCreationForm()

@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif; /* Fuente básica */
+    background-color: #f4f4f4; /* Color de fondo */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+}
+
+.container {
+    background-color: white; /* Color de fondo del formulario */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    width: 90%; /* Ancho del formulario ajustado para móviles */
+    max-width: 500px; /* Ancho máximo del formulario */
+    margin: 20px 0; /* Espacio arriba y abajo */
+}
+
+h1 {
+    text-align: center; /* Centrar el título */
+    color: #333; /* Color del texto */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* Colocar elementos en columna */
+}
+
+input, textarea {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio entre campos */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+button {
+    background-color: #007bff; /* Color azul */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+h2 {
+    text-align: center; /* Centrar el título de comentarios */
+    color: #333; /* Color del texto */
+    width: 100%; /* Ancho completo */
+    margin: 20px 0 10px 0; /* Espacio superior e inferior */
+}
+
+ul {
+    list-style-type: none; /* Quitar viñetas */
+    padding: 0; /* Sin padding */
+    width: 100%; /* Ancho completo */
+    max-width: 600px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+}
+
+li {
+    background-color: #f9f9f9; /* Color de fondo de los comentarios */
+    border: 1px solid #ddd; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 10px; /* Espacio entre comentarios */
+    box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+img {
+    max-width: 100px; /* Ancho máximo de la imagen */
+    max-height: 100px; /* Altura máxima de la imagen */
+    display: block; /* Asegurarse de que la imagen esté en su propia línea */
+    margin-top: 5px; /* Espacio encima de la imagen */
+}
+
+table {
+    width: 80%; /* Usar el 100% para aprovechar el ancho completo */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Hacer que las celdas se centren */
+th, td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Fijo para los encabezados */
+th {
+    background-color: #f2f2f2;
+}
+td.image {
+    width: 15%; /* Ajusta este valor según sea necesario */
+    text-align: center; /* Centra el contenido de la celda */
+    vertical-align: middle; /* Asegura que el contenido esté centrado verticalmente */
+}
+
+td.image img {
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho de la celda */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Responsividad para móviles */
+@media (max-width: 600px) {
+table, thead, tbody, th, td, tr {
+    display: block; /* Hacer que todos los elementos sean bloques */
+}
+
+th {
+    display: none; /* Oculta los encabezados en móviles */
+}
+
+tr {
+    margin-bottom: 15px; /* Margen entre filas */
+    border: 1px solid #ddd; /* Borde para cada fila */
+}
+
+td {
+    text-align: right; /* Alinea el texto a la derecha */
+    position: relative; /* Posición relativa para pseudo-elementos */
+    padding-left: 50%; /* Espaciado a la izquierda para el contenido */
+}
+
+td::before {
+    content: attr(data-label); /* Usa el atributo data-label como contenido */
+    position: absolute; /* Posiciona el pseudo-elemento de manera absoluta */
+    left: 10px; /* Espacio desde la izquierda */
+    text-align: left; /* Alineación a la izquierda */
+    font-weight: bold; /* Negrita para el encabezado de la celda */
+}
+td.image {
+    width: 100%; /* Usa todo el ancho en pantallas pequeñas */
+    text-align: center; /* Centra el contenido de la celda */
+}
+
+td.image img {
+    max-width: 50%; /* Limita el ancho máximo de la imagen a un 80% */
+    max-height: 50px; /* Limitar la altura para mantener el diseño de la tabla */
+    object-fit: contain; /* Asegura que la imagen no se recorte y mantenga su proporción */
+}
+}        

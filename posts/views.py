@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from .models import Post
 from django.contrib.auth.decorators import login_required
 
@@ -14,7 +14,7 @@ def posts(request):
             return redirect('posts')  # Redirige a donde desees después de crear el post
     else:
         form = PostForm()
-    posts = Post.objects.all().order_by('-created_at')
+    posts = Post.objects.filter(user=request.user).order_by('-created_at') #Muestra los posts del propio usuario
     return render(request, 'posts/post_list.html', {'form': form, 'posts': posts})
 
 @login_required
@@ -24,12 +24,27 @@ def user_posts_view(request):
 
 @login_required
 def all_posts_view(request):
-    
     posts = Post.objects.all().order_by('-created_at')  # Obtiene todos los posts
-    return render(request, 'posts/post_list.html', {'posts': posts})
+    return render(request, 'posts/all_post_list.html', {'posts': posts})
 
 @login_required
-def post_detail_view(request, pk):
-    post = get_object_or_404(Post, pk=pk)  # Obtiene el post específico por su ID
-    return render(request, 'posts/post_detail.html', {'post': post})
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    comments = post.comments.all()  # Obtener comentarios asociados al post
+    form = CommentForm()
 
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user  # Asignar el usuario actual
+            comment.post = post  # Asignar el post actual
+            comment.save()
+            return redirect('post_detail', post_id=post.id)
+
+    context = {
+        'post': post,
+        'comments': comments,
+        'form': form,
+    }
+    return render(request, 'posts/post_detail.html', context)

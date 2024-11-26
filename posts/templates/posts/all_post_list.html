@@ -4,36 +4,20 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts - Postify</title>
+    <title>All Posts - Postify</title>
     <link rel="stylesheet" href="{% static 'css/posts.css' %}">
 </head>
    {% block content %}
 
    <body>
-    <div class="container">
-        <h1>Create a new Post</h1>
-        <!-- Formulario para agregar un comentario -->
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
-            
-            <button type="submit">Send</button>
-            <br>
-            <button type="button" onclick="window.location.href='{% url 'index' %}'">Back</button>
-            
-        </form>
-        <br>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Sign out</button>
-        </form>
-    </div>
-    <h2>My Posts</h2>
+    <h2>All Posts</h2>
         <table>
             <thead>
                 <tr>
+                    <th>Usuario</th>
                     <th>Título</th>
                     <th>Descripción</th>
+                    <th>Fecha</th>
                     <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
@@ -41,8 +25,10 @@
             <tbody>
                 {% for post in posts %}
                 <tr>
+                    <td data-label="Usuario">{{ post.user }}</td>
                     <td data-label="Título">{{ post.title }}</td>
                     <td data-label="Descripción">{{ post.description }}</td>
+                    <td data-label="Fecha">{{ post.created_at }}</td>
                     <td class="image" data-label="Imagen">
                         {% if post.image %}
                             <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}" />
@@ -62,7 +48,7 @@
             </tbody>
         </table>
         <br>
-        <button type="button" onclick="window.location.href='{% url 'all_posts' %}'">Latest posts</button>
+        <button type="button" onclick="window.location.href='{% url 'posts' %}'">Back</button>
 </body>
 </html>
 {% endblock %}
