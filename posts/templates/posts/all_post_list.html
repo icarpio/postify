@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Posts - Postify</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/posts.css' %}">
 </head>
    {% block content %}
@@ -37,7 +38,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-info">Ver Detalles</a>
+                        <a href="{% url 'post_detail' post.pk %}" class="btn btn-info btn-sm mx-1">Detalles</a>
                     </td>
                 </tr>
                 {% empty %}

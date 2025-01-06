@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts - Postify</title>
+    <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+</head>
+   <body>
+    
+<div class="container">
+    <h1>Edit Post Post</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
+        <button type="submit">Save Changes</button>
+        <br>
+        <button type="button" onclick="window.location.href='{% url 'posts' %}'">Mis posts</button>
+    </form>
+    <br>
+</div>
+</body>
+</html>

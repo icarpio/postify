@@ -83,70 +83,109 @@ img {
     margin-top: 5px; /* Espacio encima de la imagen */
 }
 
+/* Estilo general para la tabla */
 table {
-    width: 80%; /* Usar el 100% para aprovechar el ancho completo */
+    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: fixed; /* Asegura que las celdas se ajusten de manera uniforme */
 }
 
-/* Hacer que las celdas se centren */
 th, td {
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
 }
 
-/* Fijo para los encabezados */
 th {
     background-color: #f2f2f2;
 }
+
 td.image {
-    width: 15%; /* Ajusta este valor según sea necesario */
     text-align: center; /* Centra el contenido de la celda */
     vertical-align: middle; /* Asegura que el contenido esté centrado verticalmente */
 }
 
 td.image img {
-    max-width: 100%; /* Asegura que la imagen no exceda el ancho de la celda */
+    max-width: 80%; /* Asegura que la imagen no exceda el ancho de la celda */
     height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Estilos para la columna de acciones */
+td.actions {
+    width: 120px; /* Columna de acciones más estrecha */
+    display: flex;
+    justify-content: space-evenly; /* Espaciado entre los botones */
+    gap: 5px;
 }
 
 /* Responsividad para móviles */
 @media (max-width: 600px) {
-table, thead, tbody, th, td, tr {
-    display: block; /* Hacer que todos los elementos sean bloques */
-}
+    body {
+        font-size: 14px; /* Ajuste de tamaño de fuente para móviles */
+    }
 
-th {
-    display: none; /* Oculta los encabezados en móviles */
-}
+    .container {
+        width: 95%; /* Ancho más grande en pantallas móviles */
+        padding: 15px; /* Reducir el relleno */
+    }
 
-tr {
-    margin-bottom: 15px; /* Margen entre filas */
-    border: 1px solid #ddd; /* Borde para cada fila */
-}
+    /* Para que la tabla sea horizontalmente desplazable en móviles */
+    table {
+        display: block; /* Hace que la tabla se convierta en un bloque */
+        width: 100%;
+        overflow-x: auto; /* Permite el desplazamiento horizontal */
+        -webkit-overflow-scrolling: touch; /* Desplazamiento suave */
+    }
 
-td {
-    text-align: right; /* Alinea el texto a la derecha */
-    position: relative; /* Posición relativa para pseudo-elementos */
-    padding-left: 50%; /* Espaciado a la izquierda para el contenido */
-}
+    /* Hacer que las celdas se muestren como bloques para móviles */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
 
-td::before {
-    content: attr(data-label); /* Usa el atributo data-label como contenido */
-    position: absolute; /* Posiciona el pseudo-elemento de manera absoluta */
-    left: 10px; /* Espacio desde la izquierda */
-    text-align: left; /* Alineación a la izquierda */
-    font-weight: bold; /* Negrita para el encabezado de la celda */
-}
-td.image {
-    width: 100%; /* Usa todo el ancho en pantallas pequeñas */
-    text-align: center; /* Centra el contenido de la celda */
-}
+    th {
+        display: none; /* Oculta los encabezados en móviles */
+    }
 
-td.image img {
-    max-width: 50%; /* Limita el ancho máximo de la imagen a un 80% */
-    max-height: 50px; /* Limitar la altura para mantener el diseño de la tabla */
-    object-fit: contain; /* Asegura que la imagen no se recorte y mantenga su proporción */
+    tr {
+        margin-bottom: 15px; /* Margen entre filas */
+        border: 1px solid #ddd; /* Borde para cada fila */
+    }
+
+    td {
+        text-align: right; /* Alinea el texto a la derecha */
+        position: relative; /* Posición relativa para pseudo-elementos */
+        padding-left: 50%; /* Espaciado a la izquierda para el contenido */
+    }
+
+    td::before {
+        content: attr(data-label); /* Usa el atributo data-label como contenido */
+        position: absolute; /* Posiciona el pseudo-elemento de manera absoluta */
+        left: 10px; /* Espacio desde la izquierda */
+        text-align: left; /* Alineación a la izquierda */
+        font-weight: bold; /* Negrita para el encabezado de la celda */
+    }
+
+    td.image {
+        width: 100%; /* Usa todo el ancho en pantallas pequeñas */
+        text-align: center; /* Centra el contenido de la celda */
+    }
+
+    td.image img {
+        max-width: 50%; /* Limita el ancho máximo de la imagen a un 50% */
+        max-height: 50px; /* Limitar la altura para mantener el diseño de la tabla */
+        object-fit: contain; /* Asegura que la imagen no se recorte y mantenga su proporción */
+    }
+
+    /* Ajuste de botones en móvil */
+    td.actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Espacio entre botones */
+    }
+
+    .button-container {
+        flex-direction: column; /* Los botones se apilan verticalmente */
+        gap: 10px;
+    }
 }
-}        

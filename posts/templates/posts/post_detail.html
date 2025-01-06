@@ -11,9 +11,9 @@
     <div class="main-container">
         <div class="container">
             <h1>{{ post.title }}</h1>
-            <p><strong>Usuario:</strong> {{ post.user }}</p>
-            <p><strong>Descripción:</strong> {{ post.description }}</p>
-            <p><strong>Fecha de creación:</strong> {{ post.created_at }}</p>
+            <p><strong>Username:</strong> {{ post.user }}</p>
+            <p><strong>Description:</strong> {{ post.description }}</p>
+            <p>{{ post.created_at }}</p>
             {% if post.image %}
                 <img src="{{ post.image.url }}" alt="Imagen {{ post.title }}"/>
             {% else %}
@@ -21,15 +21,15 @@
             {% endif %}
             
             <div class="comments-section">
-                <h2>Comentarios</h2>
+                <h2>Comments</h2>
 
             <!-- Tabla de comentarios -->
             <table class="comments-table">
                 <thead>
                     <tr>
-                        <th>Usuario</th>
-                        <th>Comentario</th>
-                        <th>Fecha</th>
+                        <th>Username</th>
+                        <th>Comment</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
