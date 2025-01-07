@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm, CommentForm
 from .models import Post
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required  # Asegúrate de que el usuario esté autenticado
 def posts(request):
@@ -24,8 +25,33 @@ def user_posts_view(request):
 
 @login_required
 def all_posts_view(request):
-    posts = Post.objects.all().order_by('-created_at')  # Obtiene todos los posts
-    return render(request, 'posts/all_post_list.html', {'posts': posts})
+    allposts_list = Post.objects.all().order_by('-created_at')  # Obtiene todos los posts
+
+    # Set up pagination (5 items per page)
+    paginator = Paginator(allposts_list, 5)
+    
+    # Get the current page number from the request
+    page = request.GET.get('page', 1)
+    
+    try:
+        # Try to get the specified page
+        allposts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        allposts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range, deliver last page of results
+        allposts = paginator.page(paginator.num_pages)
+
+    # Context to pass to the template
+    context = {
+        'posts': allposts,
+        'total_posts': allposts_list .count()
+    }
+    
+    return render(request, 'posts/all_post_list.html', context)
+
+
 
 @login_required
 def post_detail(request, post_id):

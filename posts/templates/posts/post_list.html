@@ -24,19 +24,18 @@
             {% for post in posts %}
             <tr>
                 <td class="text-center">{{ post.title }}</td>
-                <td class="text-center">
-                    {% if post.image %}
-                        <!-- Imagen centrada con un contenedor -->
-                        <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}" class="img-fluid" style="max-width: 50px; height: auto; display: block; margin: 0 auto;">
+                <td class="image">
+                    <div class="image-container">
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="Imagen {{ post.username }}">
                     {% else %}
                         No image uploaded.
                     {% endif %}
+                    </div>
                 </td>
-                <td class="text-center">
+                <td class="text-center action-column">
                     <a href="{% url 'post_detail' post.pk %}" class="btn btn-info btn-sm mx-1">Detalles</a>
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm mx-1">Editar</a>
-                    
-                    <!-- Botón Eliminar que abre el modal -->
                     <button class="btn btn-danger btn-sm mx-1" data-toggle="modal" data-target="#confirmModal" 
                             data-id="{{ post.id }}" 
                             data-title="{{ post.title }}" 
@@ -56,7 +55,7 @@
     
         <br>
             <!-- Botón para desplegar el formulario -->
-        <button id="toggle-form-btn">➕ Add Post</button>
+        <button id="toggle-form-btn">➕ Nuevo</button>
         
         <!-- Contenedor del formulario (inicialmente oculto) -->
         <div id="form-container" style="display: none;">
@@ -116,10 +115,10 @@
                     // Alternar la visibilidad del formulario
                     if (formContainer.style.display === 'none') {
                         formContainer.style.display = 'block';
-                        toggleButton.textContent = '✖ Close';
+                        toggleButton.textContent = '✖ Cerrar';
                     } else {
                         formContainer.style.display = 'none';
-                        toggleButton.textContent = '➕ Add Post';
+                        toggleButton.textContent = '➕ Nuevo';
                     }
                 });
             });

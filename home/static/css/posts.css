@@ -83,13 +83,7 @@ img {
     margin-top: 5px; /* Espacio encima de la imagen */
 }
 
-/* Estilo general para la tabla */
-table {
-    width: 100%; /* Asegurarse de que ocupe todo el ancho disponible */
-    border-collapse: collapse;
-    margin-top: 20px;
-    table-layout: fixed; /* Asegura que las celdas se ajusten de manera uniforme */
-}
+
 
 th, td {
     padding: 10px;
@@ -98,17 +92,30 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #120ee2;
 }
 
-td.image {
-    text-align: center; /* Centra el contenido de la celda */
-    vertical-align: middle; /* Asegura que el contenido esté centrado verticalmente */
+
+
+.table img {
+    width: 100px; /* Ancho fijo */
+    height: 100px; /* Alto fijo */
+    object-fit: cover; /* Recorta la imagen si no tiene proporciones iguales */
+    border-radius: 5px; /* Opcional: bordes redondeados */
 }
 
-td.image img {
-    max-width: 80%; /* Asegura que la imagen no exceda el ancho de la celda */
-    height: auto; /* Mantiene la proporción de la imagen */
+.table td, .table th {
+    vertical-align: middle; /* Centra verticalmente */
+}
+.image-column {
+    width: 1%; /* Ajusta el ancho al contenido (la imagen) */
+    white-space: nowrap; /* Evita que el contenido se extienda a múltiples líneas */
+}
+
+.image-column img {
+    width: 100px; /* Ancho fijo para la imagen */
+    height: 100px; /* Alto fijo */
+    object-fit: cover; /* Recorta la imagen si es necesario */
 }
 
 /* Estilos para la columna de acciones */
@@ -121,71 +128,165 @@ td.actions {
 
 /* Responsividad para móviles */
 @media (max-width: 600px) {
+    /* Estilos base */
     body {
-        font-size: 14px; /* Ajuste de tamaño de fuente para móviles */
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
     }
 
     .container {
-        width: 95%; /* Ancho más grande en pantallas móviles */
-        padding: 15px; /* Reducir el relleno */
-    }
-
-    /* Para que la tabla sea horizontalmente desplazable en móviles */
-    table {
-        display: block; /* Hace que la tabla se convierta en un bloque */
         width: 100%;
-        overflow-x: auto; /* Permite el desplazamiento horizontal */
-        -webkit-overflow-scrolling: touch; /* Desplazamiento suave */
+        max-width: 100%;
+        padding: 10px;
+        margin: 0 auto;
+        box-sizing: border-box;
     }
 
-    /* Hacer que las celdas se muestren como bloques para móviles */
-    table, thead, tbody, th, td, tr {
+    /* Estilos de tabla */
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-y: hidden;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+    }
+
+    table {
+        width: 100%;
+        margin: 0;
+        border-collapse: collapse;
+    }
+
+    /* Convertir tabla en formato vertical para móviles */
+    thead, tbody, th, td, tr {
         display: block;
     }
 
-    th {
-        display: none; /* Oculta los encabezados en móviles */
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
 
     tr {
-        margin-bottom: 15px; /* Margen entre filas */
-        border: 1px solid #ddd; /* Borde para cada fila */
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        background: #fff;
     }
 
     td {
-        text-align: right; /* Alinea el texto a la derecha */
-        position: relative; /* Posición relativa para pseudo-elementos */
-        padding-left: 50%; /* Espaciado a la izquierda para el contenido */
+        position: relative;
+        padding: 12px 8px;
+        padding-left: 50%;
+        text-align: left;
+        min-height: 30px;
+        border: none;
+        border-bottom: 1px solid #eee;
     }
 
     td::before {
-        content: attr(data-label); /* Usa el atributo data-label como contenido */
-        position: absolute; /* Posiciona el pseudo-elemento de manera absoluta */
-        left: 10px; /* Espacio desde la izquierda */
-        text-align: left; /* Alineación a la izquierda */
-        font-weight: bold; /* Negrita para el encabezado de la celda */
+        content: attr(data-label);
+        position: absolute;
+        left: 8px;
+        width: 45%;
+        padding-right: 10px;
+        text-align: left;
+        font-weight: bold;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
+    /* Optimización de imágenes */
     td.image {
-        width: 100%; /* Usa todo el ancho en pantallas pequeñas */
-        text-align: center; /* Centra el contenido de la celda */
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     td.image img {
-        max-width: 50%; /* Limita el ancho máximo de la imagen a un 50% */
-        max-height: 50px; /* Limitar la altura para mantener el diseño de la tabla */
-        object-fit: contain; /* Asegura que la imagen no se recorte y mantenga su proporción */
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        max-height: 80px;
+        object-fit: contain;
+        margin: 0 auto;
     }
 
-    /* Ajuste de botones en móvil */
+    /* Mejoras en botones y acciones */
     td.actions {
+        padding: 15px;
         display: flex;
         flex-direction: column;
-        gap: 10px; /* Espacio entre botones */
+        align-items: center;
+        gap: 8px;
     }
 
     .button-container {
-        flex-direction: column; /* Los botones se apilan verticalmente */
-        gap: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .button-container button,
+    .button-container .btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 0;
+        padding: 8px 16px;
+        text-align: center;
+    }
+
+    /* Cabecera de tabla */
+    .table thead.table-info {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Mejoras de accesibilidad */
+    td:focus,
+    button:focus,
+    .btn:focus {
+        outline: 2px solid #007bff;
+        outline-offset: 2px;
+    }
+      /* Optimización de imágenes - versión mejorada para centrado */
+      td.image {
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 0; /* Eliminar el padding-left que afecta el centrado */
+    }
+
+    td.image::before {
+        display: none; /* Ocultar el pseudo-elemento para las celdas de imagen */
+    }
+
+    td.image img {
+        width: auto;
+        height: auto;
+        max-width: 80%;
+        max-height: 80px;
+        object-fit: contain;
+        margin: 0 auto;
+        display: block; /* Asegura que la imagen se comporte como bloque */
+    }
+
+    /* Contenedor específico para imágenes si es necesario */
+    .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
     }
 }
