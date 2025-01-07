@@ -48,8 +48,9 @@
                                         </td>
                                         <td class="text-center" data-label="Acciones">
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="{% url 'post_detail' post.pk %}" 
-                                                   class="btn btn-info btn-sm px-3">Detalles</a>
+                                                <a href="{% url 'post_detail' post.pk %}" >
+                                                    <img src="{% static 'img/eye.png' %}" alt="Latest Posts" style="width: 40px; height: 40px;">
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
