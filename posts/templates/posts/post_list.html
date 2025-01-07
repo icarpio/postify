@@ -38,21 +38,24 @@
                     <a href="{% url 'post_detail' post.pk %}" class="btn btn-info btn-sm mx-1">Detalles</a>
                     </button>
                 </td>-->
-                <td class="text-center action-column d-flex justify-content-center">
-                    <a href="{% url 'post_detail' post.pk %}" class="mx-1" title="Detalle">
-                        <img src="{% static 'img/eye.png' %}" alt="Detalles" style="width: 40px; height: 40px;">
-                    </a>
-                    <a href="{% url 'edit_post' post.id %}" class="mx-1" title="Editar">
-                        <img src="{% static 'img/edit.png' %}" alt="Editar" style="width: 40px; height: 40px;">
-                    </a>
-                    <button class="btn btn-danger mx-1" data-toggle="modal" data-target="#confirmModal" 
-                    data-id="{{ post.id }}" 
-                    data-title="{{ post.title }}" 
-                    data-description="{{ post.description }}" 
-                    style="border: none; background: none; padding: 0;"
-                    title="Eliminar">
-                    <img src="{% static 'img/delete.png' %}" alt="Eliminar" style="width: 40px; height: 40px;">
-                 </button>
+                
+                 <td class="text-center">
+                    <div class="d-flex justify-content-center align-items-center flex-nowrap">
+                        <a href="{% url 'post_detail' post.pk %}" class="mx-1" title="Detalle">
+                            <img src="{% static 'img/eye.png' %}" alt="Detalles" class="img-fluid" style="width: 40px; height: 40px;">
+                        </a>
+                        <a href="{% url 'edit_post' post.id %}" class="mx-1" title="Editar">
+                            <img src="{% static 'img/edit.png' %}" alt="Editar" class="img-fluid" style="width: 40px; height: 40px;">
+                        </a>
+                        <button data-toggle="modal" data-target="#confirmModal" 
+                            data-id="{{ post.id }}" 
+                            data-title="{{ post.title }}" 
+                            data-description="{{ post.description }}" 
+                            style="border: none; background: none; padding: 0;"
+                            title="Eliminar">
+                            <img src="{% static 'img/delete.png' %}" alt="Eliminar" class="img-fluid" style="width: 40px; height: 40px;">
+                        </button>
+                    </div>
                 </td>
             </tr>
             {% empty %}
