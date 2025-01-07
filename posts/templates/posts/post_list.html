@@ -78,7 +78,9 @@
             <a href="{% url 'all_posts' %}" title="Todos los posts">
                 <img src="{% static 'img/all.png' %}" alt="Latest Posts" style="width: 40px; height: 40px;">
             </a>
-        
+            <a href="{% url 'inbox' %}" title="Mensajes">
+                <img src="{% static 'img/mail.png' %}" alt="Messages" style="width: 40px; height: 40px;">
+            </a>
             <!-- Imagen como enlace a la página de "Logout" -->
             <a href="{% url 'logout' %}" title="Cerrar sesión">
                 <img src="{% static 'img/logout.png' %}" alt="Sign Out" style="width: 40px; height: 40px;">

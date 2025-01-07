@@ -1,0 +1,45 @@
+{% extends "messagesapp/base.html" %}
+
+{% block title %}Mensajes{% endblock %}
+
+{% block content %}
+<div class="container mt-5 d-flex justify-content-center">
+  <!-- Contenedor principal de la bandeja de entrada -->
+  <div class="col-lg-8">
+    <!-- Tarjeta con las conversaciones -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white text-center">
+        Mensajes
+      </div>
+      <div class="card-body">
+        <!-- Lista de conversaciones -->
+        {% if conversations %}
+          <ul class="list-group">
+            {% for conversation in conversations %}
+              <li class="list-group-item list-group-item-action">
+                <a href="{% url 'view_conversation' conversation.id %}" class="text-decoration-none">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <!-- Información del usuario -->
+                    <div>
+                      <strong>Chat with:</strong>
+                      {% if conversation.sender == user %}
+                        {{ conversation.recipient.username }}
+                      {% else %}
+                        {{ conversation.sender.username }}
+                      {% endif %}
+                    </div>
+                    <!-- Fecha de inicio de la conversación -->
+                    <small class="text-muted">{{ conversation.created_at|date:"M d, Y H:i" }}</small>
+                  </div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="text-center text-muted">No conversations yet. Start a new one!</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

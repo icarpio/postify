@@ -47,12 +47,15 @@
                                             </div>
                                         </td>
                                         <td class="text-center" data-label="Acciones">
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="{% url 'post_detail' post.pk %}" >
-                                                    <img src="{% static 'img/eye.png' %}" alt="Latest Posts" style="width: 40px; height: 40px;">
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{% url 'post_detail' post.pk %}" style="margin-right: 15px;">
+                                                    <img src="{% static 'img/eye.png' %}" alt="Ver Post" style="width: 40px; height: 40px;">
+                                                </a>
+                                                <a href="{% url 'send_message' recipient_id=post.user.id %}" style="margin-left: 15px;">
+                                                    <img src="{% static 'img/email.png' %}" alt="Enviar mensaje" style="width: 40px; height: 40px;">
                                                 </a>
                                             </div>
-                                        </td>
+                                        </td>                    
                                     </tr>
                                     {% empty %}
                                     <tr>

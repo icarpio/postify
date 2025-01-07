@@ -8,5 +8,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('home/', include('home.urls')),  # Incluye las URLs de la app home
     path('posts/', include('posts.urls')),  # Incluye las URLs de la app posts
+    path('messagesapp/', include('messagesapp.urls')),  # Incluye las URLs de la app posts
     path('', RedirectView.as_view(url='/accounts/login/', permanent=False)),  # Redirige la raíz al login
 ]
